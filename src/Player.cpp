@@ -34,7 +34,7 @@ void battlegame::Player::MoveArmy(const std::size_t &id,const battlegame::moveme
         {
             try {
                 army->move(movement);
-            } 
+            }
             catch(const std::runtime_error& error)
             {
                 std::cout << error.what() << std::endl;
@@ -53,5 +53,14 @@ void battlegame::Player::getOrders(std::vector<battlegame::OrderArmy> &ordres)
         int movementchoice;
         std::cin >> movementchoice;
         ordres.emplace_back(OrderArmy(this->_id,army->getId(),static_cast<battlegame::movement>(movementchoice)));
+    }
+}
+
+void battlegame::Player::print() const
+{
+    std:: cout << "Player "+ std::to_string(this->getId()) << std::endl;
+    for(const auto& army: this->_armies)
+    {
+         std:: cout << "Army "+ std::to_string(army->getId())+ " [" + std::to_string(army->getPosition().first)+","+std::to_string(army->getPosition().second)+"] :" + std::to_string(army->getPower()) << std::endl;
     }
 }

@@ -20,6 +20,7 @@ namespace battlegame {
       void addArmy(std::size_t power,std::size_t x,std::size_t y);
       void MoveArmy(const std::size_t &id,const battlegame::movement& movement);
       void getOrders(std::vector<battlegame::OrderArmy> &ordres);
+      void print() const;
 
 
     private:
