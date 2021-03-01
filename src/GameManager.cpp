@@ -8,9 +8,7 @@
 
 battlegame::GameManager::GameManager()
 {
-    this->game = std::make_shared<battlegame::Game>();
-
-    this->game->initGame();
+    this->game.initGame();
 }
 
 void battlegame::GameManager::idle()
@@ -18,25 +16,33 @@ void battlegame::GameManager::idle()
     std::vector<battlegame::OrderArmy>  orders;
     bool quitGame{false};
 
+     this->game.print();
+
     do {
         std::cout << "### BattleGame ###" << std::endl;
-        game->FillOrders(orders);
+        game.FillOrders(orders);
 
-        std::shared_ptr<battlegame::Game> nextState = this->perform(this->game,orders);
-        this->game->print();
-        nextState->print();
+        battlegame::Game nextState = this->perform(this->game,orders);
+        this->game.print();
+        std::cout << "idle::previousgame: "+ std::to_string(this->game.id) << std::endl;
+        nextState.print();
+        std::cout << "idle::tmpgame: "+ std::to_string(nextState.id) << std::endl;
 
 
     } while (!quitGame);
 }
 
-std::shared_ptr<battlegame::Game> battlegame::GameManager::perform(std::shared_ptr<battlegame::Game> previousState, std::vector<battlegame::OrderArmy> &orders)
+battlegame::Game battlegame::GameManager::perform(const battlegame::Game& previousState, std::vector<battlegame::OrderArmy> &orders)
 {
-    std::shared_ptr<battlegame::Game> tmpGame = std::make_shared<battlegame::Game>(previousState);
-    std::cout << previousState << " " << tmpGame << std::endl;
+   
+    battlegame::Game tmpGame = previousState;
+
+    std::cout << "Perform::previousgame: "+ std::to_string(previousState.id) << std::endl;
+    std::cout << "Perform::tmpgame: "+ std::to_string(tmpGame.id) << std::endl;
+
     for(const auto& order: orders)
     {
-       tmpGame->performOrder(order);
+       tmpGame.performOrder(order);
     }
     return tmpGame;
 }

@@ -12,7 +12,7 @@ class Army
 {
   public:
     Army(std::size_t& id,std::size_t &power,std::pair<std::size_t,std::size_t> position);
-    Army(Army &army);
+    Army(Army const &army);
     [[nodiscard]] std::size_t getPower() const;
     [[nodiscard]] std::size_t getId() const;
     [[nodiscard]] std::pair<std::size_t,std::size_t> getPosition() const;

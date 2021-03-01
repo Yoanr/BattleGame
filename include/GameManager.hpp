@@ -14,8 +14,8 @@ class GameManager : GameInterface
         void idle();
 
     private:
-        std::shared_ptr<battlegame::Game> perform(std::shared_ptr<battlegame::Game> previousState, std::vector<battlegame::OrderArmy> &ordres) override;
-        std::shared_ptr<battlegame::Game> game;
+        battlegame::Game perform(const battlegame::Game &previousState, std::vector<battlegame::OrderArmy> &ordres) override;
+        battlegame::Game game;
 
 };
 

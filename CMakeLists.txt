@@ -19,6 +19,7 @@ add_executable(
         include/OrderArmy.hpp
         include/GameInterface.hpp
         include/GameManager.hpp
+        include/global.h
         )
 
 set_target_properties(

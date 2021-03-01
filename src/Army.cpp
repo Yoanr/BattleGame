@@ -7,7 +7,7 @@ battlegame::Army::Army(std::size_t& id, std::size_t &power, std::pair<std::size_
 {
 }
 
-battlegame::Army::Army(Army &army)
+battlegame::Army::Army(const Army &army)
 {
     this->_id =  army._id;
     this->_power = army._power;

@@ -3,49 +3,57 @@
 
 #include "Game.hpp"
 #include "Player.hpp"
+#include "global.h"
 
 
-battlegame::Game::Game(std::shared_ptr<battlegame::Game> game)
+battlegame::Game::Game()
 {
-    std::copy(game->_players.begin(), game->_players.end(), back_inserter(this->_players));
-    this->numberOfPlayer = game->numberOfPlayer;
-    this->_position = game->_position;
+    id = global;
+    global++;
+}
+battlegame::Game::Game(const battlegame::Game &game)
+{
+    //std::copy(game->_players.begin(), game->_players.end(), back_inserter(this->_players));
+    this->_players = game._players;
+    this->numberOfPlayer = game.numberOfPlayer;
+    this->_position = game._position;
+    id = global;
+    global++;
 }
 
-std::shared_ptr<battlegame::Player> battlegame::Game::addPlayer(std::size_t x, std::size_t y)
+battlegame::Player &battlegame::Game::addPlayer(std::size_t x, std::size_t y)
 {
-    std::shared_ptr<Player> player = std::make_shared<Player>(numberOfPlayer,x,y);
-    this->_players.emplace_back(player);
+    this->_players.emplace_back(numberOfPlayer,x,y);
     numberOfPlayer++;
-    return player;
+    return this->_players.back();
 }
 
 void battlegame::Game::initGame()
 {
-    std::shared_ptr<battlegame::Player> player1 =  this->addPlayer(0,0);
-    player1->addArmy(2,2,2);
-    player1->addArmy(1,2,3);
+    auto& player1 =  this->addPlayer(0,0);
+    player1.addArmy(2,2,2);
+    player1.addArmy(1,2,3);
 
-    std::shared_ptr<battlegame::Player> player2 =  this->addPlayer(1,1);
-    player2->addArmy(2,4,3);
+    auto& player2 =  this->addPlayer(1,1);
+    player2.addArmy(2,4,3);
 }
 
 void battlegame::Game::FillOrders(std::vector<battlegame::OrderArmy> &orders)
 {
-    for(const auto& player: _players)
+    for(auto&& player: _players)
     {
-        player->getOrders(orders);
+        player.getOrders(orders);
     }
 }
 
 void battlegame::Game::performOrder(const battlegame::OrderArmy& order)
 {
-
-    for(const auto& player: _players)
+    std::cout << "performOrder: "+ std::to_string(id) << std::endl;
+    for(auto&& player: _players)
     {
-        if(player->getId() == order._playerId)
+        if(player.getId() == order._playerId)
         {
-            player->MoveArmy(order._armyId,order._mvt);
+            player.MoveArmy(order._armyId,order._mvt);
         }
     }
 }
@@ -54,6 +62,6 @@ void battlegame::Game::print() const
 {
     for(const auto& player: _players)
     {
-        player->print();
+        player.print();
     }
 }
