@@ -1,5 +1,7 @@
-#include "Player.hpp"
 #include <iostream>
+#include <stdexcept>
+
+#include "Player.hpp"
 
 battlegame::Player::Player(std::size_t& id, std::size_t &x, std::size_t &y)
 {
@@ -25,12 +27,19 @@ void battlegame::Player::addArmy(std::size_t power,std::size_t x,std::size_t y)
     numberOfArmy++;
 }
 
-void battlegame::Player::MoveArmy(std::size_t &id, battlegame::movement& movement)
+void battlegame::Player::MoveArmy(const std::size_t &id,const battlegame::movement& movement)
 {
     for(const auto& army: _armies) {
         if(army->getId() == id)
         {
-            army->move(movement);
+            try {
+                army->move(movement);
+            } 
+            catch(const std::runtime_error& error)
+            {
+                std::cout << error.what() << std::endl;
+            }
+
         }
     }
 }

@@ -1,8 +1,16 @@
 #include <iostream>
+#include <algorithm>
 
 #include "Game.hpp"
 #include "Player.hpp"
 
+
+battlegame::Game::Game(std::shared_ptr<battlegame::Game>& game)
+{
+    std::copy(game->_players.begin(), game->_players.end(), back_inserter(this->_players));
+    this->numberOfPlayer = game->numberOfPlayer;
+    this->_position = game->_position;
+}
 std::shared_ptr<battlegame::Player> battlegame::Game::addPlayer(std::size_t x, std::size_t y)
 {
     std::shared_ptr<Player> player = std::make_shared<Player>(numberOfPlayer,x,y);
@@ -21,13 +29,22 @@ void battlegame::Game::initGame()
     player1->addArmy(2,4,3);
 }
 
-std::vector<battlegame::OrderArmy>  battlegame::Game::getOrders()
+void battlegame::Game::FillOrders(std::vector<battlegame::OrderArmy> &orders)
 {
-        std::vector<battlegame::OrderArmy> ordres;
-       // ordres.emplace_back(std::make_unique<OrderArmy>(playerId,armyId,battlegame::movement));
     for(const auto& player: _players)
     {
-        player->getOrders(ordres);
+        player->getOrders(orders);
     }
-    return ordres;
+}
+
+void battlegame::Game::performOrder(const battlegame::OrderArmy& order)
+{
+
+    for(const auto& player: _players)
+    {
+        if(player->getId() == order._playerId)
+        {
+            player->MoveArmy(order._armyId,order._mvt);
+        }
+    }
 }

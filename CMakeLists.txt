@@ -11,12 +11,14 @@ add_executable(
         src/Movement.cpp
         src/Game.cpp
         src/OrderArmy.cpp
+        src/GameManager.cpp
         include/Army.hpp
         include/Player.hpp
         include/Movement.hpp
         include/Game.hpp
         include/OrderArmy.hpp
         include/GameInterface.hpp
+        include/GameManager.hpp
         )
 
 set_target_properties(
