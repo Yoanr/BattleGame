@@ -2,9 +2,9 @@
 
 How to build:
 
-mkdir build
-cmake ..
-make
+- mkdir build
+- cmake ..
+- make
 
 How to run:
-./battleGame
+- ./battleGame
