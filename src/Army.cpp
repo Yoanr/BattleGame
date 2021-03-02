@@ -15,31 +15,17 @@ battlegame::Army::Army(const Army &army)
     this->_position = army._position;
 }
 
-std::size_t battlegame::Army::getPower() const
-{
-    return this->_power;
-}
- std::size_t battlegame::Army::getId() const
-{
-    return this->_id;
-}
-
-std::pair<std::size_t,std::size_t> battlegame::Army::getPosition() const
-{
-    return this->_position;
-}
-
 void battlegame::Army::move(battlegame::movement movement)
 {
     std::pair<int, int> direction;
 
-            try {
-                direction = battlegame::getPairposition(movement);
-            }
-            catch(const std::runtime_error& error)
-            {
-                std::cout << error.what() << std::endl;
-            }
+    try {
+        direction = battlegame::getPairposition(movement);
+    }
+    catch(const std::runtime_error& error)
+    {
+        std::cout << error.what() << std::endl;
+    }
 
     int tmpX = 0, tmpY = 0;
     tmpX = this->_position.first + direction.first;

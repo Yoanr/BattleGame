@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <memory>
 #include <utility>
 
 #include "Army.hpp"
@@ -14,7 +13,7 @@ namespace battlegame {
   {
     public:
       Player(std::size_t& id,std::size_t &x, std::size_t &y);
-      std::size_t getId() const;
+      std::size_t getId() const { return _id; }
 
       void addArmy(std::size_t power);
       void addArmy(std::size_t power,std::size_t x,std::size_t y);
@@ -29,7 +28,7 @@ namespace battlegame {
       std::vector<Army> _armies;
       std::size_t _id;
       std::pair<std::size_t,std::size_t> _spawn;
-      std::size_t numberOfArmy = 0;
+      std::size_t _numberOfArmy = 0;
 
   };
 } //battlegame

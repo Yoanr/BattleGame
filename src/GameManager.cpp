@@ -16,7 +16,7 @@ void battlegame::GameManager::idle()
     std::vector<battlegame::OrderArmy>  orders;
     bool quitGame{false};
 
-     this->_game.print();
+    this->_game.print();
 
     do {
         std::cout << "### BattleGame ###" << std::endl;

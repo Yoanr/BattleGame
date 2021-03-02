@@ -10,21 +10,16 @@ battlegame::Player::Player(std::size_t& id, std::size_t &x, std::size_t &y)
     this->_spawn.second = y;
 }
 
-std::size_t battlegame::Player::getId() const
-{
-    return this->_id;
-}
-
 void battlegame::Player::addArmy(std::size_t power)
 {
-    this->_armies.emplace_back(numberOfArmy,power,_spawn);
-    numberOfArmy++;
+    this->_armies.emplace_back(_numberOfArmy,power,_spawn);
+    _numberOfArmy++;
 }
 
 void battlegame::Player::addArmy(std::size_t power,std::size_t x,std::size_t y)
 {
-    this->_armies.emplace_back(numberOfArmy,power,std::make_pair(x,y));
-    numberOfArmy++;
+    this->_armies.emplace_back(_numberOfArmy,power,std::make_pair(x,y));
+    _numberOfArmy++;
 }
 
 void battlegame::Player::MoveArmy(const std::size_t &id,const battlegame::movement& movement)
@@ -100,3 +95,4 @@ void battlegame::Player::print() const
             }
         }
  }
+ 
