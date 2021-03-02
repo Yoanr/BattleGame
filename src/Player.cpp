@@ -42,11 +42,12 @@ void battlegame::Player::getOrders(std::vector<battlegame::OrderArmy> &ordres) c
 {
     for(const auto& army: _armies)
     {
-        std::cout << "Choose army "+std::to_string(army.getId())+ " movement [between 0 and 7] for player "+std::to_string(_id)+"\n";
-        std::cout << "up = 0, down = 1, left = 2, right = 3, upLeft = 4, upRight = 5, downLeft = 6, downRight = 7" << std::endl;
+        std::cout << "### Order - Player "+std::to_string(_id)+ " - Army "+std::to_string(army.getId())+"\n";
+        std::cout << "### Movement possible: up = 0, down = 1, left = 2, right = 3, upLeft = 4, upRight = 5, downLeft = 6, downRight = 7\n> ";
         int movementchoice;
         do{
-        std::cin >> movementchoice;
+            std::cin >> movementchoice;
+            std::cout <<std::endl;
         if(movementchoice < 0 || movementchoice > 7)
         {
             std::cout << "Please enter a movement between 0 and 7 included: " << std::endl;
@@ -60,10 +61,10 @@ void battlegame::Player::getOrders(std::vector<battlegame::OrderArmy> &ordres) c
 
 void battlegame::Player::print() const
 {
-    std:: cout << "Player "+ std::to_string(this->getId()) << std::endl;
+    std:: cout << "# Player "+ std::to_string(this->getId()) << std::endl;
     for(const auto& army: this->_armies)
     {
-         std:: cout << "Army "+ std::to_string(army.getId())+ " [" + std::to_string(army.getPosition().first)+","+std::to_string(army.getPosition().second)+"] :" + std::to_string(army.getPower()) << std::endl;
+         std:: cout << "- Army "+ std::to_string(army.getId())+ " (position: [" + std::to_string(army.getPosition().first)+","+std::to_string(army.getPosition().second)+"] , power: " + std::to_string(army.getPower()) + ")"<< std::endl;
     }
     std::cout << std::endl;
 }

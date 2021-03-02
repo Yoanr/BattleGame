@@ -48,10 +48,12 @@ void battlegame::Game::performOrder(const battlegame::OrderArmy& order)
 
 void battlegame::Game::print() const
 {
+    std::cout << "======" << std::endl;
     for(const auto& player: _players)
     {
         player.print();
     }
+    std::cout << "======" << std::endl;
 }
 
 void battlegame::Game::performPotentialFights()
