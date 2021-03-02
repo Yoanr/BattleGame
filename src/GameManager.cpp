@@ -8,7 +8,7 @@
 
 battlegame::GameManager::GameManager()
 {
-    this->game.initGame();
+    this->_game.initGame();
 }
 
 void battlegame::GameManager::idle()
@@ -16,17 +16,15 @@ void battlegame::GameManager::idle()
     std::vector<battlegame::OrderArmy>  orders;
     bool quitGame{false};
 
-     this->game.print();
+     this->_game.print();
 
     do {
         std::cout << "### BattleGame ###" << std::endl;
-        game.FillOrders(orders);
+        _game.FillOrders(orders);
 
-        battlegame::Game nextState = this->perform(this->game,orders);
-        this->game.print();
-        std::cout << "idle::previousgame: "+ std::to_string(this->game.id) << std::endl;
+        battlegame::Game nextState = this->perform(this->_game,orders);
+        this->_game.print();
         nextState.print();
-        std::cout << "idle::tmpgame: "+ std::to_string(nextState.id) << std::endl;
 
 
     } while (!quitGame);
@@ -34,12 +32,7 @@ void battlegame::GameManager::idle()
 
 battlegame::Game battlegame::GameManager::perform(const battlegame::Game& previousState, std::vector<battlegame::OrderArmy> &orders)
 {
-   
     battlegame::Game tmpGame = previousState;
-
-    std::cout << "Perform::previousgame: "+ std::to_string(previousState.id) << std::endl;
-    std::cout << "Perform::tmpgame: "+ std::to_string(tmpGame.id) << std::endl;
-
     for(const auto& order: orders)
     {
        tmpGame.performOrder(order);

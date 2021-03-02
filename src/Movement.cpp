@@ -1,5 +1,8 @@
 #include "Movement.hpp"
 
+#include <exception>
+#include <stdexcept>
+
 namespace battlegame {
 
     std::pair<int, int> getPairposition(movement& mv)

@@ -1,6 +1,5 @@
 #pragma once
-#include <cstring>
-#include "Player.hpp"
+
 #include "OrderArmy.hpp"
 #include "Game.hpp"
 

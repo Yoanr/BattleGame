@@ -2,30 +2,19 @@
 #include <algorithm>
 
 #include "Game.hpp"
-#include "Player.hpp"
-#include "global.h"
 
-
-battlegame::Game::Game()
-{
-    id = global;
-    global++;
-}
 battlegame::Game::Game(const battlegame::Game &game)
 {
-    //std::copy(game->_players.begin(), game->_players.end(), back_inserter(this->_players));
     this->_players = game._players;
-    this->numberOfPlayer = game.numberOfPlayer;
+    this->_numberOfPlayer = game._numberOfPlayer;
     this->_position = game._position;
-    id = global;
-    global++;
 }
 
 battlegame::Player &battlegame::Game::addPlayer(std::size_t x, std::size_t y)
 {
-    this->_players.emplace_back(numberOfPlayer,x,y);
-    numberOfPlayer++;
-    return this->_players.back();
+    this->_players.emplace_back(_numberOfPlayer,x,y);
+    _numberOfPlayer++;
+    return (this->_players.back());
 }
 
 void battlegame::Game::initGame()
@@ -48,12 +37,11 @@ void battlegame::Game::FillOrders(std::vector<battlegame::OrderArmy> &orders)
 
 void battlegame::Game::performOrder(const battlegame::OrderArmy& order)
 {
-    std::cout << "performOrder: "+ std::to_string(id) << std::endl;
     for(auto&& player: _players)
     {
-        if(player.getId() == order._playerId)
+        if(player.getId() == order.getPlayerId())
         {
-            player.MoveArmy(order._armyId,order._mvt);
+            player.MoveArmy(order.getArmyId(),order.getMovement());
         }
     }
 }

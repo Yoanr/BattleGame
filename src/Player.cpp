@@ -39,19 +39,26 @@ void battlegame::Player::MoveArmy(const std::size_t &id,const battlegame::moveme
             {
                 std::cout << error.what() << std::endl;
             }
-
         }
     }
 }
 
-void battlegame::Player::getOrders(std::vector<battlegame::OrderArmy> &ordres)
+void battlegame::Player::getOrders(std::vector<battlegame::OrderArmy> &ordres) const
 {
     for(const auto& army: _armies)
     {
         std::cout << "Choose army "+std::to_string(army.getId())+ " movement [between 0 and 7] for player "+std::to_string(_id)+"\n";
-        std::cout << "up, down, left, right, upLeft, upRight, downLeft, downRight" << std::endl;
+        std::cout << "up = 0, down = 1, left = 2, right = 3, upLeft = 4, upRight = 5, downLeft = 6, downRight = 7" << std::endl;
         int movementchoice;
+        do{
         std::cin >> movementchoice;
+        if(movementchoice < 0 || movementchoice > 7)
+        {
+            std::cout << "Please enter a movement between 0 and 7 included: " << std::endl;
+        }
+        }
+        while(movementchoice < 0 || movementchoice > 7);
+
         ordres.emplace_back(OrderArmy(this->_id,army.getId(),static_cast<battlegame::movement>(movementchoice)));
     }
 }
@@ -63,4 +70,5 @@ void battlegame::Player::print() const
     {
          std:: cout << "Army "+ std::to_string(army.getId())+ " [" + std::to_string(army.getPosition().first)+","+std::to_string(army.getPosition().second)+"] :" + std::to_string(army.getPower()) << std::endl;
     }
+    std::cout << std::endl;
 }

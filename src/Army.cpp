@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <iostream>
+#include <exception>
 
 #include <Army.hpp>
 

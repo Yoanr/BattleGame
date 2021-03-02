@@ -10,7 +10,6 @@ add_executable(
         src/Player.cpp
         src/Movement.cpp
         src/Game.cpp
-        src/OrderArmy.cpp
         src/GameManager.cpp
         include/Army.hpp
         include/Player.hpp
@@ -19,7 +18,6 @@ add_executable(
         include/OrderArmy.hpp
         include/GameInterface.hpp
         include/GameManager.hpp
-        include/global.h
         )
 
 set_target_properties(

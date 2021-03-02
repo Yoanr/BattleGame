@@ -15,8 +15,7 @@ class GameManager : GameInterface
 
     private:
         battlegame::Game perform(const battlegame::Game &previousState, std::vector<battlegame::OrderArmy> &ordres) override;
-        battlegame::Game game;
-
+        battlegame::Game _game;
 };
 
 } //battlegame
