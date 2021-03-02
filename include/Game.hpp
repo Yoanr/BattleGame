@@ -23,6 +23,7 @@ class Game
     std::vector<Player> _players;
     std::pair<int,int> _position;
     std::size_t _numberOfPlayer{0};
+    static const std::size_t BOARD_SIZE{10};
 };
 
 } //battlegame

@@ -57,9 +57,9 @@ void battlegame::Game::print() const
 void battlegame::Game::performPotentialFights()
 {
     std::size_t p0SquareTotalPower{0},p1SquareTotalPower{0};
-    for(auto i = 0; i < 10; ++i)
+    for(std::size_t i = 0; i < BOARD_SIZE; ++i)
     {
-        for(auto j = 0; j< 10; ++j)
+        for(std::size_t j = 0; j< BOARD_SIZE; ++j)
         {
             p0SquareTotalPower = _players[0].getSquareTotalPower(i,j);
             p1SquareTotalPower = _players[1].getSquareTotalPower(i,j);

@@ -13,8 +13,6 @@ namespace battlegame {
   {
     public:
       Player(std::size_t& id,std::size_t &x, std::size_t &y);
-      std::size_t getId() const { return _id; }
-
       void addArmy(std::size_t power);
       void addArmy(std::size_t power,std::size_t x,std::size_t y);
       void MoveArmy(const std::size_t &id,const battlegame::movement& movement);
@@ -22,6 +20,8 @@ namespace battlegame {
       void print() const;
       std::size_t getSquareTotalPower(const std::size_t& i, const  std::size_t& j) const;
       void kill(const std::size_t& i, const  std::size_t& j);
+
+      std::size_t getId() const { return _id; }
 
 
     private:

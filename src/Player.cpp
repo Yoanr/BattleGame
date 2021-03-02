@@ -95,4 +95,3 @@ void battlegame::Player::print() const
             }
         }
  }
- 
