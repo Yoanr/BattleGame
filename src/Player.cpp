@@ -72,3 +72,31 @@ void battlegame::Player::print() const
     }
     std::cout << std::endl;
 }
+
+ std::size_t battlegame::Player::getSquareTotalPower(const std::size_t& i, const  std::size_t& j) const
+ {
+    std::size_t squareTotalPower{0};
+    for(const auto& army: this->_armies)
+    {
+        if(army.getPosition().first == i && army.getPosition().second == j)
+        {
+            squareTotalPower += army.getPower();
+        }
+    }
+    return squareTotalPower;
+ }
+
+ void battlegame::Player::kill(const std::size_t& i, const  std::size_t& j)
+ {
+     for (auto it = _armies.begin(); it != _armies.end();)
+        {
+            if ( it->getPosition().first == i && it->getPosition().second == j)
+            {
+                it = _armies.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+ }

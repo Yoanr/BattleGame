@@ -21,6 +21,8 @@ namespace battlegame {
       void MoveArmy(const std::size_t &id,const battlegame::movement& movement);
       void getOrders(std::vector<battlegame::OrderArmy> &ordres) const;
       void print() const;
+      std::size_t getSquareTotalPower(const std::size_t& i, const  std::size_t& j) const;
+      void kill(const std::size_t& i, const  std::size_t& j);
 
 
     private:

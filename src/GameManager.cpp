@@ -23,10 +23,10 @@ void battlegame::GameManager::idle()
         _game.FillOrders(orders);
 
         battlegame::Game nextState = this->perform(this->_game,orders);
+
+        this->_game = nextState;
         this->_game.print();
-        nextState.print();
-
-
+        orders.clear();
     } while (!quitGame);
 }
 
@@ -37,5 +37,8 @@ battlegame::Game battlegame::GameManager::perform(const battlegame::Game& previo
     {
        tmpGame.performOrder(order);
     }
+
+    tmpGame.performPotentialFights();
+
     return tmpGame;
 }

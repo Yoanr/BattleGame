@@ -17,6 +17,7 @@ class Game
     void FillOrders(std::vector<battlegame::OrderArmy> &orders);
     void performOrder(const battlegame::OrderArmy &order);
     void print() const;
+    void performPotentialFights();
 
   private:
     std::vector<Player> _players;
